@@ -1,0 +1,16 @@
+version: 2
+models:
+  - name: br_energy_use_dwellings
+    description: CBS 81528NED — average gas/electricity use of dwellings by type, region, year.
+  - name: br_energy_tariffs
+    description: CBS 85592NED — average consumer energy tariffs per month, incl/excl VAT.
+  - name: br_regions
+    description: CBS region codes (NL country, LD, PV province, GM municipality, ES/ET).
+    columns:
+      - {name: key, tests: [not_null, unique]}
+  - name: br_dwelling_types
+    columns:
+      - {name: key, tests: [not_null, unique]}
+  - name: br_vat
+    columns:
+      - {name: key, tests: [not_null, unique]}

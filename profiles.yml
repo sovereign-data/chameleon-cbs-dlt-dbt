@@ -1,0 +1,20 @@
+# JWT against SQE (Trino protocol). The Chameleon backend overwrites this file
+# with the same shape when it runs the project; in Airflow (cosmos) and locally
+# the env vars below apply. DBT_ACCESS_TOKEN = a Keycloak access token for SQE.
+trino:
+  target: dev
+  outputs:
+    dev:
+      type: trino
+      method: jwt
+      jwt_token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
+      host: "{{ env_var('SQE_HOST', 'sql.test.sovereign-data.org') }}"
+      port: "{{ env_var('SQE_PORT', '443') | int }}"
+      http_scheme: "{{ env_var('SQE_HTTP_SCHEME', 'https') }}"
+      user: "{{ env_var('DBT_USER', 'dbt') }}"
+      database: "{{ env_var('DBT_TARGET_CATALOG', 'main_warehouse') }}"
+      schema: "{{ env_var('DBT_TARGET_SCHEMA', 'dev') }}"
+      threads: 4
+      retries: 1
+      cert: "{{ env_var('SQE_CA_CERT', '') or false }}"
+      prepared_statements_enabled: false

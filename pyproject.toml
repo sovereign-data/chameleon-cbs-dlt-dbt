@@ -1,0 +1,13 @@
+[project]
+name = "chameleon-cbs-dlt-dbt"
+version = "0.1.0"
+description = "CBS open data (NL) -> dlt -> S3 parquet -> dbt on Chameleon SQE"
+requires-python = ">=3.11"
+dependencies = [
+    "dlt[s3,parquet]>=1.16",
+    "dbt-core>=1.10",
+    "dbt-trino>=1.10",
+]
+
+[dependency-groups]
+dev = ["pytest>=8"]

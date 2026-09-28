@@ -1,0 +1,19 @@
+name: 'cbs_energy'
+version: '1.0.0'
+profile: 'trino'
+model-paths: ["models"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+clean-targets: ["target", "dbt_packages"]
+
+vars:
+  # Where ingest/cbs_pipeline.py lands parquet. Must be in SQE's
+  # [storage.tvf] allowed_object_store_prefixes (operator: valueOverrides.sqe.extraTvfPrefixes).
+  cbs_landing_url: "s3://cbs-landing/raw/cbs"
+
+models:
+  cbs_energy:
+    +materialized: table
+    bronze: {+schema: cbs_bronze}
+    silver: {+schema: cbs_silver}
+    gold: {+schema: cbs_gold}
