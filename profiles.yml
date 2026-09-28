@@ -7,7 +7,7 @@ trino:
     dev:
       type: trino
       method: jwt
-      jwt_token: "{{ env_var('DBT_ACCESS_TOKEN') }}"
+      jwt_token: "{{ env_var('DBT_ACCESS_TOKEN', '') }}"
       host: "{{ env_var('SQE_HOST', 'sql.test.sovereign-data.org') }}"
       port: "{{ env_var('SQE_PORT', '443') | int }}"
       http_scheme: "{{ env_var('SQE_HTTP_SCHEME', 'https') }}"

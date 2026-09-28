@@ -8,4 +8,4 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - run: uv sync --group dev
       - run: uv run pytest -q ingest
-      - run: DBT_ACCESS_TOKEN=x uv run dbt parse --profiles-dir .
+      - run: uv run dbt parse --profiles-dir .
